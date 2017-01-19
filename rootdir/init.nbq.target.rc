@@ -45,13 +45,12 @@ on boot
     exec - root root system -- /system/bin/init.nbq.power.sh
 
     # update foreground cpuset now that processors are up
-    write /dev/cpuset/foreground/cpus 0-5
-    write /dev/cpuset/foreground/boost/cpus 4-5
+    write /dev/cpuset/foreground/cpus 0-2
     write /dev/cpuset/background/cpus 0-2
-    write /dev/cpuset/system-background/cpus 0-3
+    write /dev/cpuset/system-background/cpus 0-2
 
     # adaptive LMK
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
     write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
 
     # per-process reclaim
@@ -59,5 +58,4 @@ on boot
     write /sys/module/process_reclaim/parameters/pressure_max 70
     write /sys/module/process_reclaim/parameters/swap_opt_eff 30
     write /sys/module/process_reclaim/parameters/pressure_min 10
-    write /sys/module/process_reclaim/parameters/per_swap_size 1024
 
